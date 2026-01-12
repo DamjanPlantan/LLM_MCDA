@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="sl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moja Aplikacija</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="title">
+        <h1>LLM + MCDA (TOPSIS + PROMETHEE)</h1>
+      </div>
+
+      <div class="model-row">
+        <label for="modelSelect">LLM model:</label>
+        <select id="modelSelect"></select>
+        <button id="btnRefreshModels" class="btn btn-secondary" type="button">Osveži modele</button>
+      </div>
+
+      <div class="button-row">
+        <button id="btnSummarize" class="btn" type="button">Ustvari povzetek</button>
+        <button id="btnMcda" class="btn btn" type="button">Naredi odločitve</button>
+        <button id="btnClear" class="btn btn-secondary" type="button">Počisti okno</button>
+        <button id="btnClearHistory" class="btn btn-danger" type="button">Izbriši vso zgodovino</button>
+        <button id="btnExportCurrent" class="btn btn-secondary" type="button">Izvozi trenutni test</button>
+        <button id="btnExportAll" class="btn btn-secondary" type="button">Izvozi vse teste</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="busyBox" class="busy hidden">Povzetek se ustvarja ...</div>
+
+    <section class="two-cols">
+      <div class="col">
+        <h2>Vhodno besedilo</h2>
+        <textarea id="inputText" placeholder="Vnesite besedilo tukaj..."></textarea>
+      </div>
+
+      <div class="col">
+        <h2>Povzetek</h2>
+        <textarea id="outputText" placeholder="Povzetek se bo prikazal tukaj..." readonly></textarea>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Rezultati testov</h2>
+      <div class="table-wrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Alternativa</th>
+              <th>Čas (s)</th>
+              <th>RAM peak (MB)</th>
+              <th>RAM avg (MB)</th>
+              <th>Output char (%)</th>
+              <th>Input chars</th>
+              <th>Output chars</th>
+              <th>Token in</th>
+              <th>Token out</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>MCDA matrika</h2>
+
+      <div class="table-wrap no-scroll">
+        <table id="mcdaTable">
+          <thead>
+            <tr>
+              <th>Alternativa</th>
+              <th>Čas (MIN)</th>
+              <th>RAM peak (MIN)</th>
+              <th>RAM avg (MIN)</th>
+              <th>Output char % (MIN)</th>
+              <th>Kvaliteta (MAX)</th>
+              <th>Halucinacije (MIN)</th>
+            </tr>
+          </thead>
+          <tbody id="mcdaTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Rezultati MCDA -->
+    <section class="section">
+      <h2>Rezultati MCDA</h2>
+
+      <div class="card card-full">
+        <h3>TOPSIS</h3>
+        <div class="table-wrap no-scroll">
+          <table id="topsisTable" class="fit-table">
+            <thead>
+              <tr>
+                <th>Alternativa</th>
+                <th>D+</th>
+                <th>D-</th>
+                <th>C*</th>
+                <th>Rang</th>
+              </tr>
+            </thead>
+            <tbody id="topsisTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-full">
+        <h3>PROMETHEE II</h3>
+        <div class="table-wrap no-scroll">
+          <table id="promTable" class="fit-table">
+            <thead>
+              <tr>
+                <th>Alternativa</th>
+                <th>Phi+</th>
+                <th>Phi-</th>
+                <th>Phi</th>
+                <th>Rang</th>
+              </tr>
+            </thead>
+            <tbody id="promTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© Damjan Plantan 2025</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

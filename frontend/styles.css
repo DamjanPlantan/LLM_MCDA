@@ -1,0 +1,253 @@
+:root {
+  --blue: #1e6bd6;
+  --blue-2: #0f4fb0;
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #16202a;
+  --muted: #5b6b7a;
+  --border: #dbe4f0;
+  --danger: #c0392b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+}
+
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.topbar .title {
+  padding: 18px 0 8px 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.model-row, .button-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px 0 14px 0;
+}
+
+label { font-weight: bold; }
+
+select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  min-width: 260px;
+}
+
+.btn {
+  padding: 9px 12px;
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover { background: var(--blue-2); }
+
+.btn-secondary {
+  background: white;
+  color: var(--blue);
+}
+
+.btn-secondary:hover {
+  background: #eef5ff;
+}
+
+.btn-danger {
+  border-color: var(--danger);
+  background: var(--danger);
+}
+
+.btn-danger:hover {
+  filter: brightness(0.95);
+}
+
+main {
+  padding: 18px 0 40px 0;
+}
+
+.section {
+  margin-top: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.col {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 0;
+}
+
+.col h2, .section h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+textarea {
+  width: 100%;
+  height: 260px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+th {
+  background: #eef5ff;
+}
+
+.hint {
+  margin: 10px 0 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 0;
+}
+
+.card-full {
+  margin-top: 12px;
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+}
+
+/* Za TOPSIS/PROMETHEE: brez horizontalnih drsnikov */
+.no-scroll { overflow-x: visible; }
+.fit-table { min-width: 0 !important; width: 100%; }
+#topsisTable th, #topsisTable td, #promTable th, #promTable td {
+  white-space: normal;
+}
+
+.busy {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff8e1;
+  color: #6b4f00;
+  font-weight: bold;
+}
+
+.hidden { display: none; }
+
+.footer {
+  margin-top: 20px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Uteži: polja naj bodo "navadna" (brez puščic) */
+.weight-input {
+  width: 90px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* Odstrani puščice pri number input */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 900px) {
+  .two-cols {
+    grid-template-columns: 1fr;
+  }
+  table { min-width: 860px; }
+}
+
+
+/* MCDA matrika: brez horizontalnega drsnika in naj se vse vidi v okvirju */
+#mcdaTable {
+  min-width: 0 !important;
+  width: 100%;
+  table-layout: fixed; /* enakomerno razporedi stolpce */
+}
+
+#mcdaTable th, #mcdaTable td {
+  white-space: normal; /* dovoli prelom besed */
+}
+
+#mcdaTable input, #mcdaTable select {
+  width: 100%;
+  min-width: 0;
+}
